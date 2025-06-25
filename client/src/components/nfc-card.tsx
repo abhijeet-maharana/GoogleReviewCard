@@ -26,7 +26,7 @@ export function NfcCard({ frontRef, backRef, url = "" }: NfcCardProps) {
           <div className="mb-6">
             <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
               <img 
-                src="/attached_assets/Google__G__logo.svg_1750884458836.webp" 
+                src="/google-logo.webp" 
                 alt="Google G Logo" 
                 width="56" 
                 height="56"
