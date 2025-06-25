@@ -2,18 +2,23 @@ import { GoogleLogo } from "./google-logo";
 import { QrCode } from "./qr-code";
 
 interface NfcCardProps {
-  isFlipped: boolean;
+  frontRef?: React.RefObject<HTMLDivElement>;
+  backRef?: React.RefObject<HTMLDivElement>;
 }
 
-export function NfcCard({ isFlipped }: NfcCardProps) {
+export function NfcCard({ frontRef, backRef }: NfcCardProps) {
   return (
-    <div className={`card-3d w-80 h-[500px] mx-auto ${isFlipped ? 'card-flipped' : ''}`}>
-      <div className="card-inner">
-        {/* Front Side */}
-        <div className="card-front bg-black text-white flex flex-col items-center justify-center p-8 shadow-2xl relative">
+    <div className="flex gap-8 justify-center items-start">
+      {/* Front Side */}
+      <div className="flex flex-col items-center">
+        <h3 className="text-lg font-semibold mb-4 text-gray-700">Front Side</h3>
+        <div 
+          ref={frontRef}
+          className="w-80 h-[500px] bg-black text-white flex flex-col items-center justify-center p-8 shadow-2xl relative rounded-[20px]"
+        >
           {/* NFC Symbol */}
           <div className="absolute top-4 right-4">
-            <i className="fas fa-wifi text-white text-xl nfc-pulse transform rotate-45"></i>
+            <i className="fas fa-wifi text-white text-xl transform rotate-45"></i>
           </div>
           
           {/* Google Logo */}
@@ -41,15 +46,21 @@ export function NfcCard({ isFlipped }: NfcCardProps) {
             Powered by ABC RFID
           </div>
         </div>
-        
-        {/* Back Side */}
-        <div className="card-back bg-black text-white flex flex-col items-center justify-center p-8 shadow-2xl relative">
+      </div>
+      
+      {/* Back Side */}
+      <div className="flex flex-col items-center">
+        <h3 className="text-lg font-semibold mb-4 text-gray-700">Back Side</h3>
+        <div 
+          ref={backRef}
+          className="w-80 h-[500px] bg-black text-white flex flex-col items-center justify-center p-8 shadow-2xl relative rounded-[20px]"
+        >
           {/* Mobile NFC Icon */}
           <div className="mb-6">
             <div className="relative">
               <i className="fas fa-mobile-alt text-white text-4xl"></i>
               <div className="absolute -top-2 -right-2">
-                <i className="fas fa-wifi text-white text-lg nfc-pulse transform rotate-45"></i>
+                <i className="fas fa-wifi text-white text-lg transform rotate-45"></i>
               </div>
             </div>
           </div>

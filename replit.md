@@ -99,6 +99,9 @@ This is a full-stack web application that generates NFC-enabled Google Review ca
 
 Changelog:
 - June 25, 2025. Initial setup
+- June 25, 2025. Updated card display to show both sides side by side without animations
+- June 25, 2025. Added HTML2Canvas for image download functionality
+- June 25, 2025. Implemented dual PNG download feature for PVC card printing
 
 ## User Preferences
 

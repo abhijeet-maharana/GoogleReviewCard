@@ -65,36 +65,6 @@
   }
 }
 
-/* 3D Card Flip Styles */
-.card-3d {
-  perspective: 1000px;
-}
-
-.card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-}
-
-.card-flipped .card-inner {
-  transform: rotateY(180deg);
-}
-
-.card-front, .card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 20px;
-}
-
-.card-back {
-  transform: rotateY(180deg);
-}
-
 /* Google G Logo Gradient */
 .google-g {
   background: conic-gradient(from 0deg at 50% 50%, 
@@ -105,20 +75,6 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-/* NFC Pulse Animation */
-.nfc-pulse {
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { 
-    opacity: 1; 
-  }
-  50% { 
-    opacity: 0.5; 
-  }
 }
 
 /* Google Brand Colors */
