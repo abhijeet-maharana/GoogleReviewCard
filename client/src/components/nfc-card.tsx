@@ -4,9 +4,10 @@ import { QrCode } from "./qr-code";
 interface NfcCardProps {
   frontRef?: React.RefObject<HTMLDivElement>;
   backRef?: React.RefObject<HTMLDivElement>;
+  url?: string;
 }
 
-export function NfcCard({ frontRef, backRef }: NfcCardProps) {
+export function NfcCard({ frontRef, backRef, url = "" }: NfcCardProps) {
   return (
     <div className="flex gap-8 justify-center items-start">
       {/* Front Side */}
@@ -43,7 +44,7 @@ export function NfcCard({ frontRef, backRef }: NfcCardProps) {
           
           {/* Branding */}
           <div className="absolute bottom-4 text-gray-500 text-sm">
-            Powered by ABC RFID
+            Powered by Abtara.com
           </div>
         </div>
       </div>
@@ -67,7 +68,7 @@ export function NfcCard({ frontRef, backRef }: NfcCardProps) {
           
           {/* QR Code */}
           <div className="mb-6">
-            <QrCode />
+            <QrCode url={url} />
           </div>
           
           {/* Star Rating */}
@@ -85,7 +86,7 @@ export function NfcCard({ frontRef, backRef }: NfcCardProps) {
           
           {/* Branding */}
           <div className="absolute bottom-4 text-gray-500 text-sm">
-            Powered by ABC RFID
+            Powered by Abtara.com
           </div>
         </div>
       </div>

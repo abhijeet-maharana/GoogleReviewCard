@@ -102,6 +102,9 @@ Changelog:
 - June 25, 2025. Updated card display to show both sides side by side without animations
 - June 25, 2025. Added HTML2Canvas for image download functionality
 - June 25, 2025. Implemented dual PNG download feature for PVC card printing
+- June 25, 2025. Updated branding to "Powered by Abtara.com"
+- June 25, 2025. Added real QR code generation using qrcode library
+- June 25, 2025. Implemented URL input form with dynamic card generation
 
 ## User Preferences
 

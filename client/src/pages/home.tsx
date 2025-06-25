@@ -1,17 +1,54 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { NfcCard } from "@/components/nfc-card";
-import { Download, CheckCircle } from "lucide-react";
+import { Download, CheckCircle, Link as LinkIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import html2canvas from "html2canvas";
 
 export default function Home() {
   const frontCardRef = useRef<HTMLDivElement>(null);
   const backCardRef = useRef<HTMLDivElement>(null);
+  const [url, setUrl] = useState("");
+  const [generatedUrl, setGeneratedUrl] = useState("");
   const { toast } = useToast();
 
+  const handleUrlSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!url.trim()) {
+      toast({
+        title: "URL Required",
+        description: "Please enter a valid URL to generate the QR code.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Add https:// if no protocol specified
+    let processedUrl = url.trim();
+    if (!processedUrl.startsWith('http://') && !processedUrl.startsWith('https://')) {
+      processedUrl = 'https://' + processedUrl;
+    }
+
+    setGeneratedUrl(processedUrl);
+    toast({
+      title: "QR Code Generated",
+      description: "Your NFC cards are ready! You can now download them.",
+    });
+  };
+
   const handleDownload = async () => {
+    if (!generatedUrl) {
+      toast({
+        title: "Generate Cards First",
+        description: "Please enter a URL and generate the cards before downloading.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     if (!frontCardRef.current || !backCardRef.current) {
       toast({
         title: "Error",
@@ -73,21 +110,57 @@ export default function Home() {
           <p className="text-gray-600">Professional cards for collecting customer reviews</p>
         </div>
         
+        {/* URL Input Form */}
+        <Card className="shadow-lg max-w-2xl mx-auto mb-8">
+          <CardContent className="p-6">
+            <form onSubmit={handleUrlSubmit} className="space-y-4">
+              <div>
+                <Label htmlFor="url" className="text-sm font-medium text-gray-700">
+                  Google Review URL or Business URL
+                </Label>
+                <div className="flex gap-2 mt-2">
+                  <div className="relative flex-1">
+                    <LinkIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <Input
+                      id="url"
+                      type="url"
+                      placeholder="Enter your Google Business review URL..."
+                      value={url}
+                      onChange={(e) => setUrl(e.target.value)}
+                      className="pl-10"
+                    />
+                  </div>
+                  <Button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white px-6">
+                    Generate Cards
+                  </Button>
+                </div>
+                <p className="text-xs text-gray-500 mt-1">
+                  Example: https://g.page/r/YourBusinessReviewLink or your business URL
+                </p>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+        
         {/* Card Container */}
-        <div className="mb-8">
-          <NfcCard frontRef={frontCardRef} backRef={backCardRef} />
-        </div>
+        {generatedUrl && (
+          <div className="mb-8">
+            <NfcCard frontRef={frontCardRef} backRef={backCardRef} url={generatedUrl} />
+          </div>
+        )}
         
         {/* Controls */}
-        <div className="flex justify-center mb-8">
-          <Button 
-            onClick={handleDownload}
-            className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg font-semibold shadow-lg"
-          >
-            <Download className="w-5 h-5 mr-2" />
-            Download Both Sides
-          </Button>
-        </div>
+        {generatedUrl && (
+          <div className="flex justify-center mb-8">
+            <Button 
+              onClick={handleDownload}
+              className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg font-semibold shadow-lg"
+            >
+              <Download className="w-5 h-5 mr-2" />
+              Download Both Sides
+            </Button>
+          </div>
+        )}
         
         {/* Features List */}
         <Card className="shadow-lg max-w-2xl mx-auto">
@@ -100,7 +173,7 @@ export default function Home() {
               </li>
               <li className="flex items-center">
                 <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                <span>QR code for universal device compatibility</span>
+                <span>Real QR code generated from your URL</span>
               </li>
               <li className="flex items-center">
                 <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
