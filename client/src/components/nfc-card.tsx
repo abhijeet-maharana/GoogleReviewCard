@@ -25,26 +25,13 @@ export function NfcCard({ frontRef, backRef, url = "" }: NfcCardProps) {
           {/* Google Logo */}
           <div className="mb-6">
             <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
-              <svg width="56" height="56" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                {/* Red segment (top right) */}
-                <path d="M50 10 A40 40 0 0 1 78.3 28.3 L61.2 38.8 A20 20 0 0 0 50 30 Z" fill="#EA4335"/>
-                
-                {/* Yellow segment (bottom left) */}
-                <path d="M21.7 28.3 A40 40 0 0 1 50 10 L50 30 A20 20 0 0 0 38.8 38.8 Z" fill="#FBBC05"/>
-                
-                {/* Green segment (bottom) */}
-                <path d="M21.7 71.7 A40 40 0 0 1 21.7 28.3 L38.8 38.8 A20 20 0 0 0 38.8 61.2 Z" fill="#34A853"/>
-                
-                {/* Blue segment (right side with opening) */}
-                <path d="M78.3 71.7 A40 40 0 0 1 21.7 71.7 L38.8 61.2 A20 20 0 0 0 61.2 61.2 L61.2 50 L78.3 50 Z" fill="#4285F4"/>
-                
-                {/* Inner white circle for the G */}
-                <circle cx="50" cy="50" r="20" fill="white"/>
-                
-                {/* Blue notch on the right (creating the G opening) */}
-                <rect x="61.2" y="44" width="16.8" height="12" fill="#4285F4"/>
-                <rect x="67" y="47" width="11" height="6" fill="white"/>
-              </svg>
+              <img 
+                src="/attached_assets/Google__G__logo.svg_1750884458836.webp" 
+                alt="Google G Logo" 
+                width="56" 
+                height="56"
+                className="object-contain"
+              />
             </div>
           </div>
           
