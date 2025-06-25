@@ -76,7 +76,7 @@ export function NfcCard({ frontRef, backRef, url = "" }: NfcCardProps) {
           
           {/* Instructions */}
           <div className="text-center mb-4">
-            <p className="text-sm text-gray-300 mb-2">Tap or Scan to review us on</p>
+            <p className="text-sm text-gray-300 mb-2 font-bold">Tap or Scan to review us on</p>
             <GoogleLogo size="medium" />
           </div>
           
