@@ -56,16 +56,6 @@ export function NfcCard({ frontRef, backRef, url = "" }: NfcCardProps) {
           ref={backRef}
           className="w-80 h-[500px] bg-black text-white flex flex-col items-center justify-center p-8 shadow-2xl relative rounded-[20px]"
         >
-          {/* Mobile NFC Icon */}
-          <div className="mb-6">
-            <div className="relative">
-              <i className="fas fa-mobile-alt text-white text-4xl"></i>
-              <div className="absolute -top-2 -right-2">
-                <i className="fas fa-wifi text-white text-lg transform rotate-45"></i>
-              </div>
-            </div>
-          </div>
-          
           {/* QR Code */}
           <div className="mb-6">
             <QrCode url={url} />
